@@ -1,0 +1,16 @@
+.container-fluid
+  .row-fluid
+    .span6.offset3.text-center
+      %i.icon-time.icon-4x
+      %br
+        .well.welltweaks
+          %h1 Today
+          %ul#tasks{"data-update-url" => sort_tasks_url}
+            - @tasks.each do |task|
+              = content_tag_for(:li, task) do
+                %span.handle
+                  = task.detail
+                  [#{link_to 'Show', task}, #{link_to 'Edit', edit_task_path(task)}, #{link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' }}]
+          %span.glyphicon.glyphicon-resize-verticle
+          %br/
+          = link_to 'New Task', new_task_path
